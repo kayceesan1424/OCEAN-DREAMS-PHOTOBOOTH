@@ -1,0 +1,3195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ocean Dreams Photobooth</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#79add8;
+    --blue-dark:#477fa9;
+    --blue-light:#eaf7ff;
+    --blue-pale:#f6fbff;
+    --text:#5688b2;
+    --soft:#8eafc8;
+    --white:#ffffff;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+
+    font-family:"DM Sans",sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 8% 8%,
+            rgba(255,255,255,.98),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 92% 18%,
+            rgba(174,222,249,.48),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(145,204,236,.34),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #e1f4ff 0%,
+            #fbfdff 48%,
+            #d8effd 100%
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* SUBTLE BACKGROUND TEXTURE */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    opacity:.18;
+
+    background-image:
+        radial-gradient(
+            #6fa6ca .7px,
+            transparent .7px
+        );
+
+    background-size:24px 24px;
+}
+
+
+/* FLOATING DECORATIONS */
+
+.floating{
+    position:fixed;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    user-select:none;
+
+    opacity:.62;
+
+    animation:
+        floatDecoration
+        6s
+        ease-in-out
+        infinite;
+}
+
+.floating.one{
+    top:7%;
+    left:2%;
+    font-size:38px;
+}
+
+.floating.two{
+    top:17%;
+    right:3%;
+    font-size:34px;
+    animation-delay:1s;
+}
+
+.floating.three{
+    bottom:14%;
+    left:3%;
+    font-size:34px;
+    animation-delay:2s;
+}
+
+.floating.four{
+    bottom:7%;
+    right:4%;
+    font-size:37px;
+    animation-delay:3s;
+}
+
+.floating.five{
+    top:52%;
+    left:1%;
+    font-size:23px;
+    animation-delay:1.5s;
+}
+
+.floating.six{
+    top:45%;
+    right:1%;
+    font-size:25px;
+    animation-delay:2.5s;
+}
+
+.floating.seven{
+    top:30%;
+    left:5%;
+    font-size:26px;
+    animation-delay:3.5s;
+}
+
+.floating.eight{
+    top:68%;
+    right:5%;
+    font-size:28px;
+    animation-delay:1.8s;
+}
+
+@keyframes floatDecoration{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50%{
+        transform:
+            translateY(-18px)
+            rotate(8deg);
+    }
+
+}
+
+
+/* HEADER */
+
+header{
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    padding:
+        46px
+        15px
+        28px;
+}
+
+.eyebrow{
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    color:#82adcc;
+}
+
+header h1{
+
+    margin:
+        9px
+        0
+        8px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            35px,
+            6vw,
+            56px
+        );
+
+    font-weight:600;
+
+    color:#5688b2;
+
+    text-shadow:
+        0
+        3px
+        15px
+        rgba(
+            90,
+            145,
+            185,
+            .16
+        );
+}
+
+.subtitle{
+    font-size:13px;
+
+    color:#86a9c4;
+}
+
+
+/* MAIN CONTAINER */
+
+.container{
+    position:relative;
+
+    z-index:2;
+
+    width:min(
+        1120px,
+        94%
+    );
+
+    margin:
+        0
+        auto
+        50px;
+}
+
+.main-card{
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .87
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .95
+        );
+
+    backdrop-filter:
+        blur(18px);
+
+    border-radius:30px;
+
+    padding:28px;
+
+    box-shadow:
+        0
+        25px
+        70px
+        rgba(
+            70,
+            130,
+            170,
+            .15
+        ),
+
+        0
+        2px
+        10px
+        rgba(
+            255,
+            255,
+            255,
+            .9
+        );
+}
+
+
+/* LAYOUT */
+
+.booth-layout{
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1.5fr)
+        minmax(275px,.75fr);
+
+    gap:26px;
+}
+
+
+/* SECTION TITLES */
+
+.section-title{
+
+    margin-bottom:6px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:25px;
+
+    color:#5688b2;
+}
+
+.section-subtitle{
+
+    margin-bottom:20px;
+
+    font-size:12px;
+
+    color:#8baec8;
+}
+
+
+/* CAMERA AREA */
+
+.camera-area{
+
+    position:relative;
+
+    padding:11px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dff3ff,
+            #c5e5f6
+        );
+
+    box-shadow:
+        inset
+        0
+        0
+        0
+        1px
+        rgba(
+            255,
+            255,
+            255,
+            .7
+        ),
+
+        0
+        12px
+        30px
+        rgba(
+            72,
+            129,
+            168,
+            .10
+        );
+}
+
+.camera-frame{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:
+        4 / 3;
+
+    overflow:hidden;
+
+    border:
+        3px
+        solid
+        white;
+
+    border-radius:20px;
+
+    background:#c4e0f2;
+
+    box-shadow:
+        0
+        10px
+        28px
+        rgba(
+            65,
+            115,
+            150,
+            .15
+        );
+}
+
+
+/* LIVE CAMERA */
+
+#video{
+
+    width:100%;
+    height:100%;
+
+    display:none;
+
+    object-fit:cover;
+
+    transform:
+        scaleX(-1);
+
+    transition:
+        filter
+        .3s
+        ease;
+}
+
+
+/* PREVIEW */
+#preview{
+
+    width:100%;
+    height:100%;
+
+    display:none;
+
+    object-fit:cover;
+}
+
+
+/* CAMERA PLACEHOLDER */
+
+.camera-placeholder{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    color:#78a1c1;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(
+                255,
+                255,
+                255,
+                .55
+            ),
+            transparent 60%
+        );
+}
+
+.camera-placeholder .camera-icon{
+
+    margin-bottom:12px;
+
+    font-size:58px;
+}
+
+.camera-placeholder strong{
+
+    margin-bottom:5px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:19px;
+
+    color:#638eaf;
+}
+
+.camera-placeholder p{
+
+    font-size:11px;
+}
+
+
+/* CAMERA LABEL */
+
+.camera-label{
+
+    position:absolute;
+
+    top:13px;
+    left:13px;
+
+    z-index:10;
+
+    padding:
+        7px
+        12px;
+
+    border-radius:30px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .88
+        );
+
+    color:#618cab;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0
+        4px
+        12px
+        rgba(
+            0,
+            0,
+            0,
+            .05
+        );
+}
+
+
+/* COUNTDOWN */
+
+.timer{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:100px;
+
+    font-weight:700;
+
+    text-shadow:
+        0
+        5px
+        20px
+        rgba(
+            53,
+            105,
+            142,
+            .65
+        ),
+
+        0
+        0
+        35px
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                90,
+                150,
+                190,
+                .10
+            ),
+            rgba(
+                60,
+                120,
+                160,
+                .18
+            )
+        );
+
+    pointer-events:none;
+
+    animation:
+        countdownPulse
+        .9s
+        ease-in-out
+        infinite;
+}
+
+@keyframes countdownPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.07);
+    }
+}
+
+
+/* FLASH */
+
+.capture-flash{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:30;
+
+    background:white;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.capture-flash.flash{
+
+    animation:
+        cameraFlash
+        .35s
+        ease-out;
+}
+
+@keyframes cameraFlash{
+
+    0%{
+        opacity:0;
+    }
+
+    20%{
+        opacity:.95;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* BUTTONS */
+
+.camera-controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    padding:
+        15px
+        4px
+        4px;
+}
+
+.btn{
+
+    border:0;
+
+    outline:0;
+
+    padding:
+        11px
+        18px;
+
+    border-radius:30px;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:
+        transform
+        .2s
+        ease,
+
+        box-shadow
+        .2s
+        ease,
+
+        filter
+        .2s
+        ease;
+}
+
+.btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.02);
+}
+
+.btn:active{
+
+    transform:
+        scale(.97);
+}
+
+.btn-primary{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #82b8df,
+            #619bc6
+        );
+
+    box-shadow:
+        0
+        7px
+        18px
+        rgba(
+            93,
+            151,
+            194,
+            .25
+        );
+}
+
+.btn-secondary{
+
+    color:#608cab;
+
+    background:white;
+
+    border:
+        1px
+        solid
+        #c6dfef;
+}
+
+.btn-capture{
+
+    padding-left:25px;
+    padding-right:25px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b96c1,
+            #447da9
+        );
+
+    box-shadow:
+        0
+        8px
+        20px
+        rgba(
+            75,
+            129,
+            168,
+            .28
+        );
+}
+
+.btn-danger{
+
+    color:#b66f84;
+
+    background:#fff0f4;
+
+    border:
+        1px
+        solid
+        #f3d7df;
+}
+
+
+/* SETTINGS */
+
+.settings{
+
+    padding:21px;
+
+    border-radius:23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f4fbff,
+            #edf7fc
+        );
+
+    border:
+        1px
+        solid
+        rgba(
+            255,
+            255,
+            255,
+            .85
+        );
+
+    box-shadow:
+        0
+        10px
+        28px
+        rgba(
+            77,
+            135,
+            173,
+            .06
+        );
+}
+
+.settings-title{
+
+    margin-bottom:19px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:22px;
+
+    color:#5688b2;
+}
+
+.setting-group{
+
+    margin-bottom:18px;
+}
+
+.setting-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#7199b6;
+}
+
+select{
+
+    width:100%;
+
+    padding:
+        11px
+        12px;
+
+    border:
+        1px
+        solid
+        #c7deed;
+
+    border-radius:12px;
+
+    outline:none;
+
+    background:white;
+
+    color:#628baa;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+select:focus{
+
+    border-color:#78abd2;
+
+    box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(
+            120,
+            171,
+            210,
+            .13
+        );
+}
+
+
+/* COUNTER */
+
+.counter{
+
+    padding:12px;
+
+    text-align:center;
+
+    border-radius:13px;
+
+    background:white;
+
+    color:#8aaac2;
+
+    font-size:10px;
+}
+
+.counter strong{
+
+    display:block;
+
+    margin-bottom:2px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:27px;
+
+    color:#578db7;
+}
+
+
+/* GUIDE */
+
+.guide{
+
+    color:#83a7c1;
+
+    font-size:11px;
+
+    line-height:1.9;
+}
+
+.guide span{
+
+    color:#6592b2;
+}
+
+
+/* GALLERY */
+
+.gallery{
+
+    margin-top:29px;
+
+    padding-top:25px;
+
+    border-top:
+        1px
+        solid
+        #deedf6;
+}
+
+.gallery-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:16px;
+}
+
+.gallery-title{
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:24px;
+
+    color:#5688b2;
+}
+
+.gallery-subtitle{
+
+    font-size:10px;
+
+    color:#8caec6;
+}
+
+.gallery-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap:13px;
+}
+
+.photo-slot{
+
+    position:relative;
+
+    aspect-ratio:
+        3 / 4;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    border:
+        2px
+        dashed
+        #c1dceb;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #edf8ff,
+            #e5f3fb
+        );
+
+    box-shadow:
+        0
+        7px
+        20px
+        rgba(
+            82,
+            137,
+            172,
+            .07
+        );
+
+    transition:
+        transform
+        .25s
+        ease,
+        box-shadow
+        .25s
+        ease;
+}
+
+.photo-slot:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0
+        14px
+        28px
+        rgba(
+            82,
+            137,
+            172,
+            .13
+        );
+}
+
+.photo-slot img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.empty-icon{
+
+    font-size:27px;
+
+    color:#a4c4da;
+}
+
+
+/* DOWNLOAD */
+
+.download-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:19px;
+}
+
+
+/* FOOTER */
+
+.footer{
+
+    padding:
+        25px
+        10px
+        40px;
+
+    text-align:center;
+
+    color:#86a9c2;
+
+    font-size:10px;
+
+    letter-spacing:1.5px;
+}
+
+
+/* CANVAS */
+
+#stripCanvas{
+
+    display:none;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+    .booth-layout{
+        grid-template-columns:1fr;
+    }
+
+    .main-card{
+        padding:19px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        padding-top:30px;
+    }
+
+    header h1{
+        font-size:36px;
+    }
+
+    .main-card{
+        border-radius:21px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+    .camera-controls{
+        flex-direction:column;
+    }
+
+    .camera-controls .btn{
+        width:100%;
+    }
+
+    .timer{
+        font-size:75px;
+    }
+
+    .floating{
+        font-size:25px !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     FLOATING DECORATIONS
+===================================================== -->
+
+<div class="floating one">🦋</div>
+<div class="floating two">🐚</div>
+<div class="floating three">💋</div>
+<div class="floating four">🪼</div>
+<div class="floating five">♾️</div>
+<div class="floating six">🩵</div>
+<div class="floating seven">🫂</div>
+<div class="floating eight">💕</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="eyebrow">
+        ✧ A Little Blue Paradise ✧
+    </div>
+
+    <h1>
+        Ocean Dreams Photobooth
+    </h1>
+
+    <p class="subtitle">
+        Capture your beautiful moments under the blue sky. 🦋
+    </p>
+
+</header>
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+<div class="main-card">
+
+
+<div class="booth-layout">
+
+
+<!-- CAMERA -->
+
+<div>
+
+    <h2 class="section-title">
+        Your Little Photo Corner ♡
+    </h2>
+
+    <p class="section-subtitle">
+        Smile, pose, and let the memories bloom.
+    </p>
+
+
+    <div class="camera-area">
+
+        <div class="camera-frame">
+
+            <div class="camera-label">
+                ● LIVE CAMERA
+            </div>
+
+
+            <video
+                id="video"
+                autoplay
+                playsinline
+                muted>
+            </video>
+
+
+            <img
+                id="preview"
+                alt="Captured photo">
+
+
+            <div
+                class="camera-placeholder"
+                id="placeholder">
+
+                <div class="camera-icon">
+                    📸
+                </div>
+
+                <strong>
+                    Your Camera
+                </strong>
+
+                <p>
+                    Click "Start Camera" to begin.
+                </p>
+
+            </div>
+
+
+            <div
+                id="timer"
+                class="timer">
+
+                3
+
+            </div>
+
+
+            <div
+                id="flash"
+                class="capture-flash">
+            </div>
+
+        </div>
+
+
+        <div class="camera-controls">
+
+            <button
+                id="startBtn"
+                class="btn btn-primary"
+                onclick="startCamera()">
+
+                Start Camera
+
+            </button>
+
+
+            <button
+                class="btn btn-secondary"
+                onclick="switchCamera()">
+
+                ↻ Flip Camera
+
+            </button>
+
+
+            <button
+                class="btn btn-capture"
+                onclick="takePhoto()">
+
+                ✦ Take Photo
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<aside class="settings">
+
+    <div class="settings-title">
+        Photobooth Settings
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="setting-group">
+
+        <label>
+            PHOTO FILTER
+        </label>
+
+        <select id="filter">
+
+            <option value="none">
+                Natural Blue
+            </option>
+
+            <option value="brightness(1.08) saturate(.85) hue-rotate(8deg)">
+                Ocean Breeze
+            </option>
+
+            <option value="brightness(1.12) saturate(.70) sepia(.08)">
+                Soft Pastel
+            </option>
+
+            <option value="contrast(1.08) saturate(1.15)">
+                Clear Sky
+            </option>
+
+            <option value="grayscale(.25) brightness(1.1)">
+                Dreamy Cloud
+            </option>
+
+            <option value="sepia(.15) brightness(1.1) saturate(.8)">
+                Vintage Blue
+            </option>
+
+            <option value="brightness(1.05) contrast(1.08) saturate(.72) sepia(.25)">
+                Vintage Cream
+            </option>
+
+            <option value="sepia(.35) contrast(1.04) brightness(1.08)">
+                Warm Film
+            </option>
+
+            <option value="grayscale(1) contrast(1.12) brightness(1.08)">
+                Classic B&W
+            </option>
+
+            <option value="grayscale(.35) sepia(.12) contrast(1.15)">
+                Soft Mono
+            </option>
+
+            <option value="brightness(1.12) saturate(1.35) contrast(1.04)">
+                Candy Pop
+            </option>
+
+            <option value="hue-rotate(160deg) saturate(1.05) brightness(1.05)">
+                Lavender Dream
+            </option>
+
+            <option value="hue-rotate(285deg) saturate(1.15) brightness(1.04)">
+                Pink Sunset
+            </option>
+
+            <option value="contrast(1.18) saturate(.88) brightness(.98)">
+                Editorial
+            </option>
+
+            <option value="brightness(1.16) saturate(.55) contrast(.95)">
+                Milky Soft
+            </option>
+
+            <!-- NEW AESTHETIC FILTERS -->
+
+            <option value="brightness(1.08) contrast(1.05) saturate(.65) sepia(.10)">
+                Cloudy Milk
+            </option>
+
+            <option value="contrast(1.12) saturate(1.20) brightness(1.04) sepia(.06)">
+                Sunlit Glow
+            </option>
+
+            <option value="brightness(1.04) contrast(1.15) saturate(.90) sepia(.18)">
+                35mm Vintage
+            </option>
+
+            <option value="grayscale(.12) contrast(1.12) saturate(.82) brightness(1.06)">
+                Soft Matte
+            </option>
+
+            <option value="brightness(1.10) saturate(1.22) hue-rotate(325deg)">
+                Rose Quartz
+            </option>
+
+            <option value="brightness(1.08) saturate(.95) hue-rotate(35deg) sepia(.10)">
+                Honey Latte
+            </option>
+
+            <option value="contrast(1.05) saturate(1.18) hue-rotate(200deg) brightness(1.06)">
+                Blue Lagoon
+            </option>
+
+            <option value="brightness(1.14) saturate(.82) contrast(.94) hue-rotate(15deg)">
+                Angel Glow
+            </option>
+
+            <option value="contrast(1.20) saturate(1.28) brightness(.98)">
+                Crystal Pop
+            </option>
+
+            <option value="grayscale(.55) contrast(1.20) brightness(1.08) sepia(.08)">
+                Film Noir Soft
+            </option>
+
+            <option value="brightness(1.06) contrast(1.04) saturate(.72) hue-rotate(250deg)">
+                Lilac Haze
+            </option>
+
+            <option value="brightness(1.09) contrast(1.03) saturate(1.12) hue-rotate(315deg)">
+                Cherry Blossom
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- FRAME -->
+
+    <div class="setting-group">
+
+        <label>
+            OCCASION FRAME
+        </label>
+
+        <select id="frame">
+
+            <option value="white">
+                Classic White ♡
+            </option>
+
+            <option value="blue">
+                Pastel Blue 🩵
+            </option>
+
+            <option value="ocean">
+                Ocean Dream 🐚
+            </option>
+
+            <option value="birthday">
+                Happy Birthday 🎂
+            </option>
+
+            <option value="christmas">
+                Merry Christmas 🎄
+            </option>
+
+            <option value="newyear">
+                Happy New Year ✨
+            </option>
+
+            <option value="valentine">
+                Valentine's / Heart Day 💗
+            </option>
+
+            <option value="easter">
+                Happy Easter 🐣
+            </option>
+
+            <option value="mothers">
+                Mother's Day 🌷
+            </option>
+
+            <option value="fathers">
+                Father's Day 💙
+            </option>
+
+            <option value="halloween">
+                Halloween 🎃
+            </option>
+
+            <option value="anniversary">
+                Happy Anniversary 💍
+            </option>
+
+            <option value="newbaby">
+                New Baby 🧸
+            </option>
+
+            <option value="graduation">
+                Graduation 🎓
+            </option>
+
+            <option value="kpop">
+                K-Pop ✦
+            </option>
+
+            <option value="floral">
+                Vintage Floral 🌸
+            </option>
+
+            <option value="coquette">
+                Coquette 🎀
+            </option>
+
+            <option value="minimal">
+                Minimal Editorial
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- COUNTER -->
+
+    <div class="setting-group">
+
+        <label>
+            PHOTO COUNT
+        </label>
+
+        <div class="counter">
+
+            <strong id="count">
+                0 / 4
+            </strong>
+
+            Photos captured
+
+        </div>
+
+    </div>
+
+
+    <!-- GUIDE -->
+
+    <div class="setting-group">
+
+        <label>
+            QUICK GUIDE
+        </label>
+
+        <div class="guide">
+
+            <span>♡</span>
+            Start your camera.<br>
+
+            <span>♡</span>
+            Choose a filter.<br>
+
+            <span>♡</span>
+            Select your occasion frame.<br>
+
+            <span>♡</span>
+            Take four pictures.<br>
+
+            <span>♡</span>
+            Keep posing during the countdown.<br>
+
+            <span>♡</span>
+            Download your photo strip.
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="btn btn-danger"
+        style="width:100%;"
+        onclick="resetPhotos()">
+
+        Reset Photos ↻
+
+    </button>
+
+</aside>
+
+</div>
+
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+    <div class="gallery-header">
+
+        <div class="gallery-title">
+            Your Memories ♡
+        </div>
+
+        <div class="gallery-subtitle">
+            Four little moments, one beautiful memory.
+        </div>
+
+    </div>
+
+
+    <div
+        id="gallery"
+        class="gallery-grid">
+    </div>
+
+
+    <div class="download-area">
+
+        <button
+            class="btn btn-primary"
+            onclick="downloadStrip()">
+
+            ♡ Download Photo Strip
+
+        </button>
+
+
+        <button
+            class="btn btn-secondary"
+            onclick="downloadLast()">
+
+            Download Last Photo
+
+        </button>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    MADE WITH LOVE & A LITTLE OCEAN MAGIC 🦋
+
+    <br><br>
+
+    ✧ shells • tulips • butterflies • blue skies • ♾️ hugs • 💋 kisses ✧
+
+</div>
+
+
+</div>
+
+
+<canvas id="stripCanvas"></canvas>
+
+
+<script>
+
+/* ELEMENTS */
+
+const video =
+    document.getElementById("video");
+
+const preview =
+    document.getElementById("preview");
+
+const placeholder =
+    document.getElementById("placeholder");
+
+const timer =
+    document.getElementById("timer");
+
+const flash =
+    document.getElementById("flash");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const filterSelect =
+    document.getElementById("filter");
+
+const frameSelect =
+    document.getElementById("frame");
+
+const count =
+    document.getElementById("count");
+
+const gallery =
+    document.getElementById("gallery");
+
+
+let stream = null;
+
+let facingMode = "user";
+
+let photos = [];
+
+let cameraBusy = false;
+
+
+/* START CAMERA */
+
+async function startCamera(){
+
+    try{
+
+        if(stream){
+
+            stream
+                .getTracks()
+                .forEach(
+                    track =>
+                        track.stop()
+                );
+
+        }
+
+
+        stream =
+            await navigator
+                .mediaDevices
+                .getUserMedia({
+
+                    video:{
+                        facingMode:facingMode,
+
+                        width:{
+                            ideal:1280
+                        },
+
+                        height:{
+                            ideal:960
+                        }
+                    },
+
+                    audio:false
+
+                });
+
+
+        video.srcObject =
+            stream;
+
+
+        await video.play();
+
+
+        video.style.display =
+            "block";
+
+        preview.style.display =
+            "none";
+
+        placeholder.style.display =
+            "none";
+
+
+        startBtn.textContent =
+            "Camera Ready ✓";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Camera access was blocked. Please allow camera permission in your browser and try again."
+        );
+
+    }
+
+}
+
+
+/* SWITCH CAMERA */
+
+async function switchCamera(){
+
+    if(cameraBusy){
+        return;
+    }
+
+
+    facingMode =
+        facingMode === "user"
+        ? "environment"
+        : "user";
+
+
+    await startCamera();
+
+}
+
+
+/* TAKE PHOTO */
+
+function takePhoto(){
+
+    if(!stream){
+
+        alert(
+            "Please click Start Camera first."
+        );
+
+        return;
+
+    }
+
+
+    if(!video.videoWidth){
+
+        alert(
+            "Please wait for the camera to load."
+        );
+
+        return;
+
+    }
+
+
+    if(cameraBusy){
+        return;
+    }
+
+
+    if(photos.length >= 4){
+
+        alert(
+            "You already have 4 photos. Download your strip or reset your photos."
+        );
+
+        return;
+
+    }
+
+
+    cameraBusy = true;
+
+
+    let seconds = 3;
+
+
+    timer.style.display =
+        "flex";
+
+    timer.textContent =
+        seconds;
+
+
+    const countdown =
+        setInterval(
+            () => {
+
+                seconds--;
+
+
+                if(seconds > 0){
+
+                    timer.textContent =
+                        seconds;
+
+                }
+
+                else{
+
+                    clearInterval(
+                        countdown
+                    );
+
+
+                    timer.textContent =
+                        "♡";
+
+
+                    setTimeout(
+                        () => {
+
+                            capturePhoto();
+
+
+                            timer.style.display =
+                                "none";
+
+
+                            cameraBusy =
+                                false;
+
+                        },
+                        300
+                    );
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+/* CAPTURE PHOTO */
+
+function capturePhoto(){
+
+    if(
+        !video.videoWidth ||
+        !video.videoHeight
+    ){
+
+        cameraBusy =
+            false;
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+
+    canvas.width =
+        video.videoWidth;
+
+    canvas.height =
+        video.videoHeight;
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const selectedFilter =
+        filterSelect.value;
+
+
+    ctx.filter =
+        selectedFilter === "none"
+        ? "none"
+        : selectedFilter;
+
+
+    if(
+        facingMode === "user"
+    ){
+
+        ctx.translate(
+            canvas.width,
+            0
+        );
+
+        ctx.scale(
+            -1,
+            1
+        );
+
+    }
+
+
+    ctx.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.filter =
+        "none";
+
+
+    photos.push(
+        canvas.toDataURL(
+            "image/png"
+        )
+    );
+
+
+    flash.classList.remove(
+        "flash"
+    );
+
+    void flash.offsetWidth;
+
+    flash.classList.add(
+        "flash"
+    );
+
+
+    updateGallery();
+
+
+
+
+    if(stream){
+
+        video.style.display =
+            "block";
+
+        preview.style.display =
+            "none";
+
+        placeholder.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* UPDATE GALLERY */
+
+function updateGallery(){
+
+    gallery.innerHTML = "";
+
+
+    photos.forEach(
+        photo => {
+
+            const slot =
+                document.createElement(
+                    "div"
+                );
+
+
+            slot.className =
+                "photo-slot";
+
+
+            const image =
+                document.createElement(
+                    "img"
+                );
+
+
+            image.src =
+                photo;
+
+
+            slot.appendChild(
+                image
+            );
+
+
+            gallery.appendChild(
+                slot
+            );
+
+        }
+    );
+
+
+
+    for(
+        let i = photos.length;
+        i < 4;
+        i++
+    ){
+
+        const slot =
+            document.createElement(
+                "div"
+            );
+
+
+        slot.className =
+            "photo-slot";
+
+
+        slot.innerHTML = `
+
+            <div class="empty-icon">
+                ♡
+            </div>
+
+        `;
+
+
+        gallery.appendChild(
+            slot
+        );
+
+    }
+
+
+    count.textContent =
+        `${photos.length} / 4`;
+
+
+
+    if(stream){
+
+        video.style.display =
+            "block";
+
+        preview.style.display =
+            "none";
+
+        placeholder.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* FILTER PREVIEW */
+
+filterSelect.addEventListener(
+    "change",
+    function(){
+
+        video.style.filter =
+            this.value === "none"
+            ? "none"
+            : this.value;
+
+    }
+);
+
+
+/* RESET */
+
+function resetPhotos(){
+
+    if(cameraBusy){
+        return;
+    }
+
+
+    if(photos.length === 0){
+        return;
+    }
+
+
+    if(
+        !confirm(
+            "Are you sure you want to delete all four photos?"
+        )
+    ){
+        return;
+    }
+
+
+    photos = [];
+
+
+    updateGallery();
+
+
+    if(stream){
+
+        video.style.display =
+            "block";
+
+        preview.style.display =
+            "none";
+
+        placeholder.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* DOWNLOAD LAST PHOTO */
+
+function downloadLast(){
+
+    if(photos.length === 0){
+
+        alert(
+            "Take a photo first!"
+        );
+
+        return;
+
+    }
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        photos[
+            photos.length - 1
+        ];
+
+
+    link.download =
+        "ocean-dreams-photo.png";
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+}
+
+
+/* PHOTO STRIP DESIGNS */
+
+const designs = {
+
+    white:{
+        bg:"#ffffff",
+        card:"#f8fbff",
+        ink:"#5688b2",
+        title:"Ocean Dreams ♡",
+        subtitle:"A LITTLE COLLECTION OF MEMORIES",
+        footer:"♡ Captured under blue skies ♡",
+        pattern:"none"
+    },
+
+    blue:{
+        bg:"#dff1fc",
+        card:"#ffffff",
+        ink:"#4f83ab",
+        title:"Ocean Dreams 🩵",
+        subtitle:"BLUE SKIES • SOFT MOMENTS",
+        footer:"✧ blue skies • little memories ✧",
+        pattern:"waves"
+    },
+
+    ocean:{
+        bg:"#c9e9f8",
+        card:"#effaff",
+        ink:"#3f769d",
+        title:"Ocean Dreams 🐚",
+        subtitle:"SEA • SKY • SUNSHINE",
+        footer:"🐚 Made beside the sea ♡",
+        pattern:"ocean"
+    },
+
+    birthday:{
+        bg:"#fff0f6",
+        card:"#fffafd",
+        ink:"#b65d88",
+        title:"Happy Birthday 🎂",
+        subtitle:"A LITTLE PARTY OF MEMORIES",
+        footer:"🎈 Make a wish • keep the memory 🎈",
+        pattern:"confetti"
+    },
+
+    christmas:{
+        bg:"#f5eee8",
+        card:"#fffaf5",
+        ink:"#8b5148",
+        title:"Merry Christmas 🎄",
+        subtitle:"COZY HOLIDAY MEMORIES",
+        footer:"✦ warm wishes • merry christmas ✦",
+        pattern:"snow"
+    },
+
+    newyear:{
+        bg:"#11192e",
+        card:"#1c2945",
+        ink:"#f2d98c",
+        title:"Happy New Year ✨",
+        subtitle:"NEW YEAR • NEW MEMORIES",
+        footer:"✦ Cheers to beautiful beginnings ✦",
+        pattern:"stars"
+    },
+
+    valentine:{
+        bg:"#ffe5ee",
+        card:"#fff8fa",
+        ink:"#c55d83",
+        title:"Valentine's Day ♡",
+        subtitle:"LOVE • LAUGHTER • LITTLE MOMENTS",
+        footer:"♾️ Always • 🫂 Hugs • 💋 Kisses • ♡ Forever",
+        pattern:"hearts"
+    },
+
+    easter:{
+        bg:"#f5efff",
+        card:"#fffaff",
+        ink:"#8a70b4",
+        title:"Happy Easter 🐣",
+        subtitle:"SWEET SPRING MEMORIES",
+        footer:"🌷 little joys • pastel days 🌷",
+        pattern:"easter"
+    },
+
+    mothers:{
+        bg:"#fbecef",
+        card:"#fff8fa",
+        ink:"#b75e76",
+        title:"Happy Mother's Day 🌷",
+        subtitle:"FOR THE LOVELIEST MOM",
+        footer:"🌷 With love, always 🌷",
+        pattern:"flowers"
+    },
+
+    fathers:{
+        bg:"#e7f2f8",
+        card:"#f9fdff",
+        ink:"#47748f",
+        title:"Happy Father's Day 💙",
+        subtitle:"A DAY FOR GREAT MEMORIES",
+        footer:"✦ strength • kindness • love ✦",
+        pattern:"stars"
+    },
+
+    halloween:{
+        bg:"#1b1720",
+        card:"#2a202d",
+        ink:"#f39a44",
+        title:"Happy Halloween 🎃",
+        subtitle:"SPOOKY LITTLE MEMORIES",
+        footer:"🕸️ sweet • spooky • unforgettable 🕸️",
+        pattern:"halloween"
+    },
+
+    anniversary:{
+        bg:"#f2e8df",
+        card:"#fffaf6",
+        ink:"#986e58",
+        title:"Happy Anniversary 💍",
+        subtitle:"ANOTHER CHAPTER OF LOVE",
+        footer:"♾️ Always • 🫂 Hugs • 💋 Kisses • ♡ Forever",
+        pattern:"hearts"
+    },
+
+    newbaby:{
+        bg:"#e9f7f6",
+        card:"#fbffff",
+        ink:"#70a4a0",
+        title:"Welcome Little One 🧸",
+        subtitle:"TINY MOMENTS • BIG LOVE",
+        footer:"☁️ tiny hands • endless love ☁️",
+        pattern:"clouds"
+    },
+
+    graduation:{
+        bg:"#eeeafa",
+        card:"#fcfaff",
+        ink:"#675590",
+        title:"Congratulations 🎓",
+        subtitle:"A BEAUTIFUL NEW BEGINNING",
+        footer:"✦ dream big • go far • shine ✦",
+        pattern:"confetti"
+    },
+
+    kpop:{
+        bg:"#eee8ff",
+        card:"#fcf9ff",
+        ink:"#755db1",
+        title:"K-Pop Memories ✦",
+        subtitle:"SPARKLE • POSE • SHINE",
+        footer:"✦ main character energy ✦",
+        pattern:"sparkle"
+    },
+
+    floral:{
+        bg:"#f3eadf",
+        card:"#fffaf4",
+        ink:"#8e705d",
+        title:"Vintage Floral 🌸",
+        subtitle:"SOFT DAYS • PRETTY MEMORIES",
+        footer:"🌸 gathered with love 🌸",
+        pattern:"flowers"
+    },
+
+    coquette:{
+        bg:"#fbe8ef",
+        card:"#fff8fb",
+        ink:"#a45c76",
+        title:"Sweet Memories 🎀",
+        subtitle:"A LITTLE COQUETTE MOMENT",
+        footer:"୨୧ pretty moments • forever ୨୧",
+        pattern:"hearts"
+    },
+
+    minimal:{
+        bg:"#f3f3f1",
+        card:"#ffffff",
+        ink:"#333333",
+        title:"The Memory Edit",
+        subtitle:"A LITTLE COLLECTION OF MOMENTS",
+        footer:"— captured in the moment —",
+        pattern:"minimal"
+    }
+
+};
+
+
+/* DRAW PATTERN */
+
+function drawPattern(
+    ctx,
+    design,
+    width,
+    height
+){
+
+    ctx.save();
+
+    ctx.globalAlpha =
+        .16;
+
+    ctx.textAlign =
+        "center";
+
+
+    let symbols = "";
+
+
+    switch(
+        design.pattern
+    ){
+
+        case "hearts":
+            symbols =
+                "♡  ♥  ♡";
+            break;
+
+        case "snow":
+            symbols =
+                "❄  ✦  ❄";
+            break;
+
+        case "confetti":
+            symbols =
+                "✦  •  ✧";
+            break;
+
+        case "stars":
+            symbols =
+                "✦  ✧  ⋆";
+            break;
+
+        case "sparkle":
+            symbols =
+                "✦  ✧  ⋆  ✦";
+            break;
+
+        case "flowers":
+            symbols =
+                "🌸  ✿  🌸";
+            break;
+
+        case "easter":
+            symbols =
+                "🥚  •  🐣";
+            break;
+
+        case "halloween":
+            symbols =
+                "🕸️  🕷️  🎃";
+            break;
+
+        case "clouds":
+            symbols =
+                "☁️  ☁️";
+            break;
+
+        case "waves":
+            symbols =
+                "≈  ≈  ≈";
+            break;
+
+        case "ocean":
+            symbols =
+                "🐚  🫧  🐚";
+            break;
+
+        default:
+            symbols =
+                "";
+    }
+
+
+    if(symbols){
+
+        ctx.font =
+            "24px Arial";
+
+
+        for(
+            let y = 40;
+            y < height;
+            y += 82
+        ){
+
+            ctx.fillText(
+                symbols,
+                50,
+                y
+            );
+
+
+            ctx.fillText(
+                symbols,
+                width - 50,
+                y + 38
+            );
+
+        }
+
+    }
+
+
+    if(
+        design.pattern ===
+        "minimal"
+    ){
+
+        ctx.globalAlpha =
+            .35;
+
+        ctx.strokeStyle =
+            design.ink;
+
+        ctx.lineWidth =
+            2;
+
+
+        ctx.strokeRect(
+            15,
+            15,
+            width - 30,
+            height - 30
+        );
+
+    }
+
+
+    ctx.restore();
+
+}
+
+
+/* COVER CROP */ 
+
+function drawCoverImage(
+    ctx,
+    img,
+    x,
+    y,
+    width,
+    height
+){
+
+    const imageRatio =
+        img.width /
+        img.height;
+
+
+    const boxRatio =
+        width /
+        height;
+
+
+    let sourceWidth;
+    let sourceHeight;
+    let sourceX;
+    let sourceY;
+
+
+    if(
+        imageRatio >
+        boxRatio
+    ){
+
+        sourceHeight =
+            img.height;
+
+        sourceWidth =
+            img.height *
+            boxRatio;
+
+        sourceX =
+            (
+                img.width -
+                sourceWidth
+            ) / 2;
+
+        sourceY =
+            0;
+
+    }
+
+    else{
+
+        sourceWidth =
+            img.width;
+
+        sourceHeight =
+            img.width /
+            boxRatio;
+
+        sourceX =
+            0;
+
+        sourceY =
+            (
+                img.height -
+                sourceHeight
+            ) / 2;
+
+    }
+
+
+    ctx.drawImage(
+
+        img,
+
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+
+        x,
+        y,
+        width,
+        height
+
+    );
+
+}
+
+
+/* ROUNDED RECTANGLE */
+
+function roundedRect(
+    ctx,
+    x,
+    y,
+    width,
+    height,
+    radius
+){
+
+    const r =
+        Math.min(
+            radius,
+            width / 2,
+            height / 2
+        );
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        x + r,
+        y
+    );
+
+
+    ctx.arcTo(
+        x + width,
+        y,
+        x + width,
+        y + height,
+        r
+    );
+
+
+    ctx.arcTo(
+        x + width,
+        y + height,
+        x,
+        y + height,
+        r
+    );
+
+
+    ctx.arcTo(
+        x,
+        y + height,
+        x,
+        y,
+        r
+    );
+
+
+    ctx.arcTo(
+        x,
+        y,
+        x + width,
+        y,
+        r
+    );
+
+
+    ctx.closePath();
+
+}
+
+
+/* DOWNLOAD PHOTO STRIP */
+
+async function downloadStrip(){
+
+    if(
+        photos.length !== 4
+    ){
+
+        alert(
+            "Please capture all 4 photos before downloading your photo strip."
+        );
+
+        return;
+
+    }
+
+
+    const canvas =
+        document.getElementById(
+            "stripCanvas"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const design =
+        designs[
+            frameSelect.value
+        ] ||
+        designs.white;
+
+
+    const width =
+        720;
+
+    const photoWidth =
+        620;
+
+    const photoHeight =
+        420;
+
+    const photoGap =
+        28;
+
+    const headerHeight =
+        150;
+
+    const footerHeight =
+        155;
+
+
+    const height =
+        headerHeight +
+        photoHeight * 4 +
+        photoGap * 3 +
+        footerHeight;
+
+
+    canvas.width =
+        width;
+
+    canvas.height =
+        height;
+
+
+    /* BACKGROUND */
+
+    ctx.fillStyle =
+        design.bg;
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    drawPattern(
+        ctx,
+        design,
+        width,
+        height
+    );
+
+
+    /* HEADER */
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillStyle =
+        design.ink;
+
+
+    ctx.font =
+        "bold 39px Georgia";
+
+
+    ctx.fillText(
+        design.title,
+        width / 2,
+        57
+    );
+
+
+    ctx.font =
+        "13px Arial";
+
+
+    ctx.fillText(
+        design.subtitle,
+        width / 2,
+        86
+    );
+
+
+    ctx.font =
+        "17px Arial";
+
+
+    ctx.fillText(
+        "✦   ✧   ✦",
+        width / 2,
+        116
+    );
+
+
+    /* LOAD IMAGES */
+
+    const imagePromises =
+        photos.map(
+            src =>
+                new Promise(
+                    resolve => {
+
+                        const img =
+                            new Image();
+
+
+                        img.onload =
+                            () =>
+                                resolve(img);
+
+
+                        img.src =
+                            src;
+
+                    }
+                )
+        );
+
+
+    const images =
+        await Promise.all(
+            imagePromises
+        );
+
+
+   
+    images.forEach(
+        (img,index) => {
+
+            const x =
+                (
+                    width -
+                    photoWidth
+                ) / 2;
+
+
+            const y =
+                headerHeight +
+                index *
+                (
+                    photoHeight +
+                    photoGap
+                );
+
+
+            
+
+            ctx.save();
+
+
+            ctx.shadowColor =
+                "rgba(40,75,100,.18)";
+
+
+            ctx.shadowBlur =
+                18;
+
+
+            ctx.shadowOffsetY =
+                7;
+
+
+            ctx.fillStyle =
+                design.card;
+
+
+            roundedRect(
+                ctx,
+                x - 8,
+                y - 8,
+                photoWidth + 16,
+                photoHeight + 16,
+                16
+            );
+
+
+            ctx.fill();
+
+
+            ctx.restore();
+
+
+
+            ctx.save();
+
+
+            roundedRect(
+                ctx,
+                x,
+                y,
+                photoWidth,
+                photoHeight,
+                11
+            );
+
+
+            ctx.clip();
+
+
+            drawCoverImage(
+                ctx,
+                img,
+                x,
+                y,
+                photoWidth,
+                photoHeight
+            );
+
+
+            ctx.restore();
+
+        }
+    );
+
+
+    /* DATE + TIME */
+
+    const now =
+        new Date();
+
+
+    const date =
+        now.toLocaleDateString(
+            undefined,
+            {
+                year:"numeric",
+                month:"long",
+                day:"numeric"
+            }
+        );
+
+
+    const time =
+        now.toLocaleTimeString(
+            undefined,
+            {
+                hour:"numeric",
+                minute:"2-digit"
+            }
+        );
+
+
+    /* FOOTER */
+
+    const footerY =
+        height - 98;
+
+
+    ctx.fillStyle =
+        design.ink;
+
+
+    ctx.font =
+        "19px Georgia";
+
+
+    ctx.fillText(
+        design.footer,
+        width / 2,
+        footerY
+    );
+
+
+    ctx.font =
+        "12px Arial";
+
+
+    ctx.fillText(
+        `${date}  •  ${time}`,
+        width / 2,
+        footerY + 29
+    );
+
+
+    ctx.font =
+        "11px Arial";
+
+
+    ctx.globalAlpha =
+        .72;
+
+
+    ctx.fillText(
+        "Ocean Dreams Photobooth",
+        width / 2,
+        footerY + 54
+    );
+
+
+    ctx.globalAlpha =
+        1;
+
+
+    /* DOWNLOAD */
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.download =
+        "ocean-dreams-photo-strip.png";
+
+
+    link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+}
+
+
+/* INITIALIZE */
+
+updateGallery();
+
+timer.style.display =
+    "none";
+
+video.style.display =
+    "none";
+
+preview.style.display =
+    "none";
+
+placeholder.style.display =
+    "flex";
+
+</script>
+
+</body>
+</html>
